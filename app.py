@@ -7,6 +7,9 @@ FB_API_URL = 'https://graph.facebook.com/v12.0/me/messages'
 VERIFY_TOKEN = 'lan_messenger' # <paste your verify token here>
 PAGE_ACCESS_TOKEN = 'EAAOlCqcUdggBAIDEDiofnPrMIrqPmJZAJrHmdPvuhacT52y85kFRh55ZClEAUqrnpOtZCHpsHYokTuPQJZAUPPHMHN69uy6ArZAyOlHT8adyEHNyyZAff8tk73GsvFasGLFTmQBbRJbU1o6rmN6CmZCp9zGsc16IrqFE6vpLZBkXZC0qI4ZCBXsYEBwdZB7WZCfiUNL6XyyWsTncUwZDZD' # paste your page access token here>"
 
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
 def get_bot_response(message):
     """This is just a dummy function, returning a variation of what
