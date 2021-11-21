@@ -1,4 +1,6 @@
 import requests
+
+from bot import Bot
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -6,6 +8,8 @@ app = Flask(__name__)
 FB_API_URL = 'https://graph.facebook.com/v12.0/me/messages'
 VERIFY_TOKEN = 'lan_messenger' # <paste your verify token here>
 PAGE_ACCESS_TOKEN = 'EAAOlCqcUdggBAIDEDiofnPrMIrqPmJZAJrHmdPvuhacT52y85kFRh55ZClEAUqrnpOtZCHpsHYokTuPQJZAUPPHMHN69uy6ArZAyOlHT8adyEHNyyZAff8tk73GsvFasGLFTmQBbRJbU1o6rmN6CmZCp9zGsc16IrqFE6vpLZBkXZC0qI4ZCBXsYEBwdZB7WZCfiUNL6XyyWsTncUwZDZD' # paste your page access token here>"
+
+lan = Bot(access_token=PAGE_ACCESS_TOKEN, api_version="12.0", app_secret=VERIFY_TOKEN)
 
 @app.route('/')
 def hello_world():
@@ -45,13 +49,28 @@ def listen():
         return verify_webhook(request)
 
     if request.method == 'POST':
-        payload = request.json
-        event = payload['entry'][0]['messaging']
-        for x in event:
-            if is_user_message(x):
-                text = x['message']['text']
-                sender_id = x['sender']['id']
-                respond(sender_id, text)
+        # payload = request.json
+        # event = payload['entry'][0]['messaging']
+        # for x in event:
+        #     if is_user_message(x):
+        #         text = x['message']['text']
+        #         sender_id = x['sender']['id']
+        #         respond(sender_id, text)
+        
+        output = request.get_json()
+        for event in output['entry']:
+            messaging = event['messaging']
+            for x in messaging:
+                if x.get('message'):
+                    recipient_id = x['sender']['id']
+                    if x['message'].get('text'):
+                        message = x['message']['text']
+                        lan.send_text_message(recipient_id, message)
+                    if x['message'].get('attachments'):
+                        for att in x['message'].get('attachments'):
+                            lan.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
+                else:
+                    pass
 
         return "ok"
 
