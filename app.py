@@ -58,6 +58,7 @@ def listen():
         #         respond(sender_id, text)
         
         output = request.get_json()
+        print("output: {}".format(output))
         for event in output['entry']:
             messaging = event['messaging']
             for x in messaging:
@@ -65,6 +66,7 @@ def listen():
                     recipient_id = x['sender']['id']
                     if x['message'].get('text'):
                         message = x['message']['text']
+                        print("Received message: {}".format(message))
                         lan.send_text_message(recipient_id, message)
                     if x['message'].get('attachments'):
                         for att in x['message'].get('attachments'):
