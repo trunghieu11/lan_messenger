@@ -66,14 +66,14 @@ def send_message(recipient_id, text):
         },
         "quick_replies":[
             {
-                "content_type": "option_1",
-                "title":"Red",
+                "content_type": "text",
+                "title":"option_1",
                 "payload":"option_1",
                 # "image_url":"http://example.com/img/red.png"
             },
             {
-                "content_type": "option_2",
-                "title":"Green",
+                "content_type": "text",
+                "title":"option_2",
                 "payload":"option_2",
                 # "image_url":"http://example.com/img/green.png"
             }
