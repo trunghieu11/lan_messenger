@@ -59,25 +59,25 @@ def send_message(recipient_id, text):
     """Send a response to Facebook"""
     payload = {
         'message': {
-            'text': text
+            'text': text,
+            "quick_replies":[
+                {
+                    "content_type": "text",
+                    "title":"option_1",
+                    "payload":"option_1",
+                    # "image_url":"http://example.com/img/red.png"
+                },
+                {
+                    "content_type": "text",
+                    "title":"option_2",
+                    "payload":"option_2",
+                    # "image_url":"http://example.com/img/green.png"
+                }
+            ],
         },
         'recipient': {
             'id': recipient_id
         },
-        "quick_replies":[
-            {
-                "content_type": "text",
-                "title":"option_1",
-                "payload":"option_1",
-                # "image_url":"http://example.com/img/red.png"
-            },
-            {
-                "content_type": "text",
-                "title":"option_2",
-                "payload":"option_2",
-                # "image_url":"http://example.com/img/green.png"
-            }
-        ],
         'notification_type': 'regular'
     }
 
