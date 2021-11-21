@@ -68,13 +68,13 @@ def send_message(recipient_id, text):
             {
                 "content_type": "option_1",
                 "title":"Red",
-                # "payload":"<POSTBACK_PAYLOAD>",
+                "payload":"option_1",
                 # "image_url":"http://example.com/img/red.png"
             },
             {
                 "content_type": "option_2",
                 "title":"Green",
-                # "payload":"<POSTBACK_PAYLOAD>",
+                "payload":"option_2",
                 # "image_url":"http://example.com/img/green.png"
             }
         ],
