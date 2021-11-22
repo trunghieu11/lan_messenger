@@ -87,6 +87,7 @@ class Bot:
         #                      params=self.auth_args, headers=multipart_header).json()
         
         request_endpoint = '{0}/me/messages'.format(self.graph_url)
+        
         payload = {
             'recipient': {"id": recipient_id},
             'message': {"attachment": {"type": "image", "payload": {}}},
