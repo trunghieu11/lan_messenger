@@ -10,9 +10,9 @@ DEFAULT_API_VERSION = 2.6
 
 
 class NotificationType(Enum):
-    regular = "REGULAR"
-    silent_push = "SILENT_PUSH"
-    no_push = "NO_PUSH"
+    regular = "regular"
+    silent_push = "silent_push"
+    no_push = "no_push"
 
 
 class Bot:
@@ -296,6 +296,9 @@ class Bot:
             params=self.auth_args,
             json=payload
         )
+        print("request_endpoint: ", request_endpoint)
+        print("params: ", self.auth_args)
+        print("Payload: ", payload)
         result = response.json()
         return result
 
