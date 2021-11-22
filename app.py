@@ -75,9 +75,9 @@ def listen():
                             response = lan.send_image(recipient_id, "example.png")
                             print("response: ", response)
                             
-                            if response["status_code"] != 200:
-                                print("Error: ", response["status_code"])
-                                print("Error message: ", response["text"])
+                            if response["code"] != 200:
+                                print("Error: ", response["code"])
+                                print("Error message: ", response["message"])
                 else:
                     pass
 
