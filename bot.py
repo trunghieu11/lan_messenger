@@ -64,40 +64,40 @@ class Bot:
             Response from API as <dict>
         """
         
-        # payload = {
-        #     'recipient': json.dumps({
-        #         'id': recipient_id
-        #     }),
-        #     # 'notification_type': "regular",
-        #     'message': json.dumps({
-        #         'attachment': {
-        #             'type': attachment_type,
-        #             'payload': {}
-        #         }
-        #     }),
-        #     'filedata': (os.path.basename(attachment_path), open(attachment_path, 'rb'), 'image/png')
-        # }
-        
-        # multipart_data = MultipartEncoder(payload)
-        # multipart_header = {
-        #     'Content-Type': multipart_data.content_type
-        # }
-        
-        # return requests.post(self.graph_url, data=multipart_data,
-        #                      params=self.auth_args, headers=multipart_header).json()
-        
         request_endpoint = '{0}/me/messages'.format(self.graph_url)
         
         payload = {
-            'recipient': {"id": recipient_id},
-            'message': {"attachment": {"type": "image", "payload": {}}},
-        }
-
-        files = {
-            'filedata': ('duck', open(attachment_path, 'rb'), 'image/png')
+            'recipient': {
+                'id': recipient_id
+            },
+            # 'notification_type': "regular",
+            'message': {
+                'attachment': {
+                    'type': attachment_type,
+                    'payload': {}
+                }
+            },
+            'filedata': (os.path.basename(attachment_path), open(attachment_path, 'rb'), 'image/png')
         }
         
-        return requests.post(request_endpoint, params=self.auth_args, data=payload, files=files).json()
+        multipart_data = MultipartEncoder(payload)
+        multipart_header = {
+            'Content-Type': multipart_data.content_type
+        }
+        
+        return requests.post(request_endpoint, data=multipart_data,
+                             params=self.auth_args, headers=multipart_header).json()
+        
+        # payload = {
+        #     'recipient': {"id": recipient_id},
+        #     'message': {"attachment": {"type": "image", "payload": {}}},
+        # }
+
+        # files = {
+        #     'filedata': ('duck', open(attachment_path, 'rb'), 'image/png')
+        # }
+        
+        # return requests.post(request_endpoint, params=self.auth_args, data=payload, files=files).json()
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url,
                             notification_type=NotificationType.regular):
