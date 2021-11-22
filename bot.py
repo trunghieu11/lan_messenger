@@ -1,8 +1,9 @@
 import os
-from enum import Enum
-
 import requests
 import utils
+
+from requests_toolbelt import MultipartEncoder
+from enum import Enum
 
 DEFAULT_API_VERSION = 2.6
 

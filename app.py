@@ -71,7 +71,8 @@ def listen():
                     
                     if x['message'].get('attachments'):
                         for att in x['message'].get('attachments'):
-                            lan.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
+                            # lan.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
+                            lan.send_image(recipient_id, "example.png")
                 else:
                     pass
 
