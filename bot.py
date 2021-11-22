@@ -102,6 +102,8 @@ class Bot:
             'filedata': file_data
         }
         
+        print("Attachment payload: ", payload)
+        
         return self.send_raw(payload)
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url,
