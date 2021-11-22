@@ -68,7 +68,7 @@ class Bot:
             'recipient': json.dumps({
                 'id': recipient_id
             }),
-            'notification_type': notification_type,
+            'notification_type': "regular",
             'message': json.dumps({
                 'attachment': {
                     'type': attachment_type,
