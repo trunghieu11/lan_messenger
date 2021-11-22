@@ -67,16 +67,16 @@ class Bot:
         request_endpoint = '{0}/me/messages'.format(self.graph_url)
         
         payload = {
-            'recipient': {
+            'recipient': json.dumps({
                 'id': recipient_id
-            },
+            }),
             'notification_type': notification_type,
-            'message': {
-                'attachment': {
+            'message': json.dumps({
+                'attachment': json.dumps({
                     'type': attachment_type,
                     'payload': {}
-                }
-            },
+                })
+            }),
             'filedata': (os.path.basename(attachment_path), open(attachment_path, 'rb'), 'image/png')
         }
         
