@@ -97,7 +97,7 @@ class Bot:
             'filedata': ('duck', open(attachment_path, 'rb'), 'image/png')
         }
         
-        return requests.post(request_endpoint, params=self.auth_args, data=payload, files=files)
+        return requests.post(request_endpoint, params=self.auth_args, data=payload, files=files).json()
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url,
                             notification_type=NotificationType.regular):

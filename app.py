@@ -74,10 +74,6 @@ def listen():
                             # lan.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
                             response = lan.send_image(recipient_id, "example.png")
                             print("response: ", response)
-                            
-                            if response["error"]["code"] != 200:
-                                print("Error: ", response["error"]["code"])
-                                print("Error message: ", response["error"]["message"])
                 else:
                     pass
 
