@@ -64,23 +64,26 @@ class Bot:
         Output:
             Response from API as <dict>
         """
+        
         payload = {
             'recipient': json.dumps({
                 'id': recipient_id
             }),
-            'notification_type': "regular",
+            # 'notification_type': "regular",
             'message': json.dumps({
                 'attachment': {
                     'type': attachment_type,
                     'payload': {}
                 }
             }),
-            'filedata': (os.path.basename(attachment_path), open(attachment_path, 'rb'))
+            'filedata': (os.path.basename(attachment_path), open(attachment_path, 'rb'), 'image/png')
         }
+        
         multipart_data = MultipartEncoder(payload)
         multipart_header = {
             'Content-Type': multipart_data.content_type
         }
+        
         return requests.post(self.graph_url, data=multipart_data,
                              params=self.auth_args, headers=multipart_header).json()
 
@@ -292,9 +295,7 @@ class Bot:
             params=self.auth_args,
             json=payload
         )
-        print("request_endpoint: ", request_endpoint)
-        print("params: ", self.auth_args)
-        print("Payload: ", payload)
+        
         result = response.json()
         return result
 

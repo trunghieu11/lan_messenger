@@ -58,7 +58,7 @@ def listen():
         #         respond(sender_id, text)
         
         output = request.get_json()
-        print("output: {}".format(output))
+        
         for event in output['entry']:
             messaging = event['messaging']
             for x in messaging:
@@ -72,7 +72,11 @@ def listen():
                     if x['message'].get('attachments'):
                         for att in x['message'].get('attachments'):
                             # lan.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
-                            lan.send_image(recipient_id, "example.png")
+                            response = lan.send_image(recipient_id, "example.png")
+                            
+                            if response.status_code != 200:
+                                print("Error: ", response.status_code)
+                                print("Error message: ", response.text)
                 else:
                     pass
 
