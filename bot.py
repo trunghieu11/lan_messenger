@@ -86,25 +86,17 @@ class Bot:
         # return requests.post(self.graph_url, data=multipart_data,
         #                      params=self.auth_args, headers=multipart_header).json()
         
-        file_data = "@{};type=image/png".format(attachment_path)
-        
+        request_endpoint = '{0}/me/messages'.format(self.graph_url)
         payload = {
-            'recipient': {
-                'id': recipient_id
-            },
-            'message': {
-                'attachment': {
-                    'type': attachment_type,
-                    'payload': {}
-                },
-            },
-            'notification_type': notification_type,
-            'filedata': file_data
+            'recipient': {"id": recipient_id},
+            'message': {"attachment": {"type": "image", "payload": {}}},
+        }
+
+        files = {
+            'filedata': ('duck', open(attachment_path, 'rb'), 'image/png')
         }
         
-        print("Attachment payload: ", payload)
-        
-        return self.send_raw(payload)
+        return requests.post(request_endpoint, params=self.auth_args, data=payload, files=files)
 
     def send_attachment_url(self, recipient_id, attachment_type, attachment_url,
                             notification_type=NotificationType.regular):
