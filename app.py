@@ -7,9 +7,9 @@ app = Flask(__name__)
 
 FB_API_URL = 'https://graph.facebook.com/v12.0/me/messages'
 VERIFY_TOKEN = 'lan_messenger' # <paste your verify token here>
-PAGE_ACCESS_TOKEN = 'EAAOlCqcUdggBAIDEDiofnPrMIrqPmJZAJrHmdPvuhacT52y85kFRh55ZClEAUqrnpOtZCHpsHYokTuPQJZAUPPHMHN69uy6ArZAyOlHT8adyEHNyyZAff8tk73GsvFasGLFTmQBbRJbU1o6rmN6CmZCp9zGsc16IrqFE6vpLZBkXZC0qI4ZCBXsYEBwdZB7WZCfiUNL6XyyWsTncUwZDZD' # paste your page access token here>"
+PAGE_ACCESS_TOKEN = 'EAAOlCqcUdggBAIDEDiofnPrMIrqPmJZAJrHmdPvuhacT52y85kFRh55ZClEAUqrnpOtZCHpsHYokTuPQJZAUPPHMHN69uy6ArZAyOlHT8adyEHNyyZAff8tk73GsvFasGLFTmQBbRJbU1o6rmN6CmZCp9zGsc16IrqFE6vpLZBkXZC0qI4ZCBXsYEBwdZB7WZCfiUNL6XyyWsTncUwZDZD' # paste your page access token here
 
-lan = Bot(access_token=PAGE_ACCESS_TOKEN, api_version="12.0", app_secret=VERIFY_TOKEN)
+lan = Bot(access_token=PAGE_ACCESS_TOKEN, api_version="12.0")
 
 @app.route('/')
 def hello_world():
