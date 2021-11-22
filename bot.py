@@ -86,7 +86,7 @@ class Bot:
         # return requests.post(self.graph_url, data=multipart_data,
         #                      params=self.auth_args, headers=multipart_header).json()
         
-        file_data = "{};type=image/png".format(attachment_path)
+        file_data = "@{};type=image/png".format(attachment_path)
         
         payload = {
             'recipient': {
