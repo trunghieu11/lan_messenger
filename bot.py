@@ -9,11 +9,10 @@ from enum import Enum
 DEFAULT_API_VERSION = 2.6
 
 
-class NotificationType(Enum):
+class NotificationType(str, Enum):
     regular = "regular"
     silent_push = "silent_push"
     no_push = "no_push"
-
 
 class Bot:
     def __init__(self, access_token, **kwargs):
