@@ -73,10 +73,11 @@ def listen():
                         for att in x['message'].get('attachments'):
                             # lan.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
                             response = lan.send_image(recipient_id, "example.png")
+                            print("response: ", response)
                             
-                            if response.status_code != 200:
-                                print("Error: ", response.status_code)
-                                print("Error message: ", response.text)
+                            if response["status_code"] != 200:
+                                print("Error: ", response["status_code"])
+                                print("Error message: ", response["text"])
                 else:
                     pass
 
