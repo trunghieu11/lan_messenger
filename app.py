@@ -49,32 +49,31 @@ def listen():
         return verify_webhook(request)
 
     if request.method == 'POST':
-        payload = request.json
-        event = payload['entry'][0]['messaging']
-        for x in event:
-            if is_user_message(x):
-                text = x['message']['text']
-                sender_id = x['sender']['id']
-                # respond(sender_id, text)
-                lan.send_text_message(sender_id, text)
+        # payload = request.json
+        # event = payload['entry'][0]['messaging']
+        # for x in event:
+        #     if is_user_message(x):
+        #         text = x['message']['text']
+        #         sender_id = x['sender']['id']
+        #         respond(sender_id, text)
         
-        # output = request.get_json()
-        # print("output: {}".format(output))
-        # for event in output['entry']:
-        #     messaging = event['messaging']
-        #     for x in messaging:
-        #         if x.get('message'):
-        #             recipient_id = x['sender']['id']
-        #             if x['message'].get('text'):
-        #                 message = x['message']['text']
-        #                 print("Received message: {}".format(message))
-        #                 lan.send_text_message(recipient_id, message)
+        output = request.get_json()
+        print("output: {}".format(output))
+        for event in output['entry']:
+            messaging = event['messaging']
+            for x in messaging:
+                if x.get('message'):
+                    recipient_id = x['sender']['id']
+                    if x['message'].get('text'):
+                        message = x['message']['text']
+                        print("Received message: {}".format(message))
+                        lan.send_text_message(recipient_id, message)
                     
-        #             if x['message'].get('attachments'):
-        #                 for att in x['message'].get('attachments'):
-        #                     lan.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
-        #         else:
-        #             pass
+                    if x['message'].get('attachments'):
+                        for att in x['message'].get('attachments'):
+                            lan.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
+                else:
+                    pass
 
         return "ok"
 
