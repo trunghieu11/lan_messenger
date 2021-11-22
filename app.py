@@ -72,7 +72,7 @@ def listen():
                     if x['message'].get('attachments'):
                         for att in x['message'].get('attachments'):
                             # lan.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
-                            response = lan.send_image(recipient_id, "C:\\Users\\trunghieu11\\Documents\\Projects\\virtual-assistant\\LanMessenger\\example.png")
+                            response = lan.send_image(recipient_id, "C:/Users/trunghieu11/Documents/Projects/virtual-assistant/LanMessenger/example.png")
                             print("response: ", response)
                             
                             if response["error"]["code"] != 200:
