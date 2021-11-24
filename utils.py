@@ -1,7 +1,7 @@
 import hashlib
 import hmac
 import six
-
+import configparser
 
 def validate_hub_signature(app_secret, request_payload, hub_signature_header):
     """
@@ -40,3 +40,9 @@ def generate_appsecret_proof(access_token, app_secret):
         hmac_object = hmac.new(bytearray(app_secret, 'utf8'), str(access_token).encode('utf8'), hashlib.sha256)
     generated_hash = hmac_object.hexdigest()
     return generated_hash
+
+def read_ini(file_path):
+    config = configparser.ConfigParser()
+    config.optionxform = str
+    config.read(file_path)
+    return config
