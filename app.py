@@ -1,6 +1,7 @@
 import requests
 import utils
 import os
+import object_detection
 
 from bot import Bot
 from flask import Flask, request
@@ -46,8 +47,12 @@ def listen():
                     if x['message'].get('attachments'):
                         for att in x['message'].get('attachments'):
                             # lan.send_attachment_url(recipient_id, att['type'], att['payload']['url'])
-                            response = lan.send_image(recipient_id, "example.png")
-                            print("response: ", response)
+                            # response = lan.send_image(recipient_id, "example.png")
+                            status_code, processed_file_path = object_detection.analyze_photo_url(att["payload"]["url"])
+                            if status_code == 200:
+                                lan.send_image(recipient_id, processed_file_path)
+                            else:
+                                lan.send_text_message(recipient_id, "Bị lỗi rồi, ahuhu!!")
                 else:
                     pass
 

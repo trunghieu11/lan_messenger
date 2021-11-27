@@ -2,6 +2,7 @@ import hashlib
 import hmac
 import six
 import configparser
+import requests
 
 def validate_hub_signature(app_secret, request_payload, hub_signature_header):
     """
@@ -46,3 +47,8 @@ def read_ini(file_path):
     config.optionxform = str
     config.read(file_path)
     return config
+
+def save_image(image_url, file_path):
+    img_data = requests.get(image_url).content
+    with open(file_path, 'wb') as handler:
+        handler.write(img_data)
