@@ -7,3 +7,4 @@ opencv-python==4.5.2.52
 Pillow==8.4.0
 requests==2.22.0
 requests-toolbelt==0.9.1
+opencv-python-headless==4.5.4.60
